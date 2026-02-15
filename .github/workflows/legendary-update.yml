@@ -9,6 +9,9 @@ jobs:
   update:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write   # 🔥 REQUIRED to allow push
+
     steps:
       - uses: actions/checkout@v4
         with:
@@ -16,8 +19,11 @@ jobs:
 
       - name: Update Dashboard
         run: |
-          python3 <<'EOF'
-          import os, re, datetime, subprocess
+          python3 << 'EOF'
+          import os
+          import re
+          import datetime
+          import subprocess
 
           readme = "README.md"
 
@@ -59,11 +65,13 @@ jobs:
           for topic in topics:
               path = f"problems/{topic}"
               count = 0
+
               if os.path.exists(path):
                   count = len([
                       d for d in os.listdir(path)
                       if os.path.isdir(os.path.join(path, d))
                   ])
+
               total += count
 
               content = re.sub(
