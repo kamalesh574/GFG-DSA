@@ -25,8 +25,29 @@ with open(readme,"r") as f:
     content = f.read()
 
 topics = [
-"mathematics","arrays","strings","recursion","linked-list",
-"stack","queue","tree","graph","dynamic-programming"
+"mathematics",
+"bit-magic",
+"recursion",
+"arrays",
+"searching",
+"sorting",
+"matrix",
+"hashing",
+"strings",
+"linked-list",
+"stack",
+"queue",
+"deque",
+"tree",
+"binary-search-tree",
+"heap",
+"graph",
+"greedy",
+"backtracking",
+"dynamic-programming",
+"trie",
+"segment-tree",
+"disjoint-set"
 ]
 
 total = 0
