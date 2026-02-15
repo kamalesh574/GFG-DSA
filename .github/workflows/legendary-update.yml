@@ -16,105 +16,129 @@ jobs:
 
       - name: Update Dashboard
         run: |
-          python3 <<EOF
-import os, re, datetime, subprocess
+          python3 <<'EOF'
+          import os, re, datetime, subprocess
 
-readme = "README.md"
+          readme = "README.md"
 
-with open(readme,"r") as f:
-    content = f.read()
+          with open(readme, "r") as f:
+              content = f.read()
 
-topics = [
-"mathematics",
-"bit-magic",
-"recursion",
-"arrays",
-"searching",
-"sorting",
-"matrix",
-"hashing",
-"strings",
-"linked-list",
-"stack",
-"queue",
-"deque",
-"tree",
-"binary-search-tree",
-"heap",
-"graph",
-"greedy",
-"backtracking",
-"dynamic-programming",
-"trie",
-"segment-tree",
-"disjoint-set"
-]
+          topics = [
+              "mathematics",
+              "bit-magic",
+              "recursion",
+              "arrays",
+              "searching",
+              "sorting",
+              "matrix",
+              "hashing",
+              "strings",
+              "linked-list",
+              "stack",
+              "queue",
+              "deque",
+              "tree",
+              "binary-search-tree",
+              "heap",
+              "graph",
+              "greedy",
+              "backtracking",
+              "dynamic-programming",
+              "trie",
+              "segment-tree",
+              "disjoint-set"
+          ]
 
-total = 0
+          total = 0
 
-def progress_bar(n):
-    blocks = min(n,10)
-    return "█"*blocks + "░"*(10-blocks)
+          def progress_bar(n):
+              blocks = min(n, 10)
+              return "█" * blocks + "░" * (10 - blocks)
 
-for topic in topics:
-    path = f"problems/{topic}"
-    count = 0
-    if os.path.exists(path):
-        count = len([d for d in os.listdir(path) if os.path.isdir(os.path.join(path,d))])
-    total += count
+          for topic in topics:
+              path = f"problems/{topic}"
+              count = 0
+              if os.path.exists(path):
+                  count = len([
+                      d for d in os.listdir(path)
+                      if os.path.isdir(os.path.join(path, d))
+                  ])
+              total += count
 
-    content = re.sub(f"<!-- {topic}-start -->.*?<!-- {topic}-end -->",
-                     f"<!-- {topic}-start -->{count}<!-- {topic}-end -->",
-                     content)
+              content = re.sub(
+                  f"<!-- {topic}-start -->.*?<!-- {topic}-end -->",
+                  f"<!-- {topic}-start -->{count}<!-- {topic}-end -->",
+                  content,
+                  flags=re.S
+              )
 
-    content = re.sub(f"<!-- {topic}-bar-start -->.*?<!-- {topic}-bar-end -->",
-                     f"<!-- {topic}-bar-start -->{progress_bar(count)}<!-- {topic}-bar-end -->",
-                     content)
+              content = re.sub(
+                  f"<!-- {topic}-bar-start -->.*?<!-- {topic}-bar-end -->",
+                  f"<!-- {topic}-bar-start -->{progress_bar(count)}<!-- {topic}-bar-end -->",
+                  content,
+                  flags=re.S
+              )
 
-# Difficulty detection via folder naming
-easy=medium=hard=0
-for root, dirs, files in os.walk("problems"):
-    for d in dirs:
-        name=d.lower()
-        if "easy" in name: easy+=1
-        elif "medium" in name: medium+=1
-        elif "hard" in name: hard+=1
+          # Difficulty detection
+          easy = medium = hard = 0
+          for root, dirs, files in os.walk("problems"):
+              for d in dirs:
+                  name = d.lower()
+                  if "easy" in name:
+                      easy += 1
+                  elif "medium" in name:
+                      medium += 1
+                  elif "hard" in name:
+                      hard += 1
 
-content = re.sub(r"<!-- total-start -->.*?<!-- total-end -->",
-                 f"<!-- total-start -->{total}<!-- total-end -->", content)
-content = re.sub(r"<!-- easy-start -->.*?<!-- easy-end -->",
-                 f"<!-- easy-start -->{easy}<!-- easy-end -->", content)
-content = re.sub(r"<!-- medium-start -->.*?<!-- medium-end -->",
-                 f"<!-- medium-start -->{medium}<!-- medium-end -->", content)
-content = re.sub(r"<!-- hard-start -->.*?<!-- hard-end -->",
-                 f"<!-- hard-start -->{hard}<!-- hard-end -->", content)
+          content = re.sub(r"<!-- total-start -->.*?<!-- total-end -->",
+                           f"<!-- total-start -->{total}<!-- total-end -->",
+                           content, flags=re.S)
 
-# Streak calculation
-log = subprocess.check_output(
-    ["git","log","--date=short","--pretty=format:%ad","--","problems"]
-).decode().splitlines()
+          content = re.sub(r"<!-- easy-start -->.*?<!-- easy-end -->",
+                           f"<!-- easy-start -->{easy}<!-- easy-end -->",
+                           content, flags=re.S)
 
-dates = sorted(set(log), reverse=True)
-streak = 0
-today = datetime.date.today()
+          content = re.sub(r"<!-- medium-start -->.*?<!-- medium-end -->",
+                           f"<!-- medium-start -->{medium}<!-- medium-end -->",
+                           content, flags=re.S)
 
-for i,d in enumerate(dates):
-    day=datetime.datetime.strptime(d,"%Y-%m-%d").date()
-    if day==today-datetime.timedelta(days=i):
-        streak+=1
-    else:
-        break
+          content = re.sub(r"<!-- hard-start -->.*?<!-- hard-end -->",
+                           f"<!-- hard-start -->{hard}<!-- hard-end -->",
+                           content, flags=re.S)
 
-content = re.sub(r"<!-- streak-start -->.*?<!-- streak-end -->",
-                 f"<!-- streak-start -->{streak}<!-- streak-end -->", content)
+          # Streak calculation
+          try:
+              log = subprocess.check_output(
+                  ["git", "log", "--date=short", "--pretty=format:%ad", "--", "problems"]
+              ).decode().splitlines()
 
-now=datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
-content = re.sub(r"<!-- updated-start -->.*?<!-- updated-end -->",
-                 f"<!-- updated-start -->{now}<!-- updated-end -->", content)
+              dates = sorted(set(log), reverse=True)
+              streak = 0
+              today = datetime.date.today()
 
-with open(readme,"w") as f:
-    f.write(content)
-EOF
+              for i, d in enumerate(dates):
+                  day = datetime.datetime.strptime(d, "%Y-%m-%d").date()
+                  if day == today - datetime.timedelta(days=i):
+                      streak += 1
+                  else:
+                      break
+          except:
+              streak = 0
+
+          content = re.sub(r"<!-- streak-start -->.*?<!-- streak-end -->",
+                           f"<!-- streak-start -->{streak}<!-- streak-end -->",
+                           content, flags=re.S)
+
+          now = datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
+          content = re.sub(r"<!-- updated-start -->.*?<!-- updated-end -->",
+                           f"<!-- updated-start -->{now}<!-- updated-end -->",
+                           content, flags=re.S)
+
+          with open(readme, "w") as f:
+              f.write(content)
+          EOF
 
       - name: Commit changes
         run: |
