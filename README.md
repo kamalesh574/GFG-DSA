@@ -46,14 +46,15 @@
 
 ## 📂 Repository Structure
 
+```text
 problems/
-└── topic/
-└── problem-name/
-├── Solution.java
-├── README.md
-├── explanation.pdf
-├── trace-step-01.jpg
-└── tests.txt
+   └── topic/
+         └── problem-name/
+               ├── Solution.java
+               ├── README.md
+               ├── explanation.pdf
+               ├── trace-step-01.jpg
+               └── tests.txt
 
 
 ---
