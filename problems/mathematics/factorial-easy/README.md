@@ -40,19 +40,12 @@ Output: 6
 
 ```java
 class Solution {
-    public long factorial(int n) {
-
-        if (n < 0) {
-            throw new IllegalArgumentException("Factorial is not defined for negative numbers");
+    public int factorial(int n) {
+        int fact = 1;
+        for (int i = 2; i <= n; i++) {
+            fact *= i;
         }
-
-        long result = 1;
-
-        for (int i = 1; i <= n; i++) {
-            result *= i;
-        }
-
-        return result;
+        return fact;
     }
 }
 
@@ -67,15 +60,12 @@ Base Case: 0! = 1
 
 ---
 
-```
+```java
 
 class Solution {
-    public long factorial(int n) {
+    public int factorial(int n) {
 
-        if (n < 0) {
-            throw new IllegalArgumentException("Factorial is not defined for negative numbers");
-        }
-
+        
         if (n == 0 || n == 1) {
             return 1;
         }
