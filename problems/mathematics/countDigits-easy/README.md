@@ -101,7 +101,7 @@ class Solution {
 ## 🔹 Idea
 
 Each recursive call removes one digit by dividing by `10`  
-and adds `1` to the result.
+and adds `1` to the result
 
 ---
 
