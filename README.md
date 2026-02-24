@@ -18,12 +18,12 @@
 
 | Metric | Count |
 |--------|-------|
-| 🧩 Total Problems | <!-- total-start -->3<!-- total-end --> |
-| 🟢 Easy | <!-- easy-start -->3<!-- easy-end --> |
+| 🧩 Total Problems | <!-- total-start -->4<!-- total-end --> |
+| 🟢 Easy | <!-- easy-start -->4<!-- easy-end --> |
 | 🟡 Medium | <!-- medium-start -->0<!-- medium-end --> |
 | 🔴 Hard | <!-- hard-start -->0<!-- hard-end --> |
 | 🔥 Current Streak | <!-- streak-start -->1<!-- streak-end --> days |
-| 🕒 Last Updated | <!-- updated-start -->2026-02-24 05:42 UTC<!-- updated-end --> |
+| 🕒 Last Updated | <!-- updated-start -->2026-02-24 05:43 UTC<!-- updated-end --> |
 
 ---
 
@@ -31,7 +31,7 @@
 
 | Topic | Solved | Progress |
 |--------|--------|----------|
-| Mathematics | <!-- mathematics-start -->3<!-- mathematics-end --> | <!-- mathematics-bar-start -->███░░░░░░░<!-- mathematics-bar-end --> |
+| Mathematics | <!-- mathematics-start -->4<!-- mathematics-end --> | <!-- mathematics-bar-start -->████░░░░░░<!-- mathematics-bar-end --> |
 | Bit Magic | <!-- bit-magic-start -->0<!-- bit-magic-end --> | <!-- bit-magic-bar-start -->░░░░░░░░░░<!-- bit-magic-bar-end --> |
 | Recursion | <!-- recursion-start -->0<!-- recursion-end --> | <!-- recursion-bar-start -->░░░░░░░░░░<!-- recursion-bar-end --> |
 | Arrays | <!-- arrays-start -->0<!-- arrays-end --> | <!-- arrays-bar-start -->░░░░░░░░░░<!-- arrays-bar-end --> |
