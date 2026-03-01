@@ -10,11 +10,11 @@
   <circle cx="120" cy="140" r="45" stroke="#3fb950" stroke-width="10"
     fill="none"
     stroke-dasharray="282.7433388230814"
-    stroke-dashoffset="254.46900494077326"
+    stroke-dashoffset="251.64157155254244"
     transform="rotate(-90 120 140)"/>
 
   <text x="120" y="145" fill="#ffffff" font-size="24" text-anchor="middle">
-    10
+    11
   </text>
   <text x="120" y="170" fill="#8b949e" font-size="12" text-anchor="middle">
     Solved
@@ -22,11 +22,11 @@
 
   <text x="250" y="110" fill="#3fb950" font-size="18">Easy: 10</text>
   <rect x="250" y="120" width="350" height="10" fill="#30363d" rx="5"/>
-  <rect x="250" y="120" width="350.0" height="10" fill="#3fb950" rx="5"/>
+  <rect x="250" y="120" width="315.0" height="10" fill="#3fb950" rx="5"/>
 
-  <text x="250" y="150" fill="#d29922" font-size="18">Medium: 0</text>
+  <text x="250" y="150" fill="#d29922" font-size="18">Medium: 1</text>
   <rect x="250" y="160" width="350" height="10" fill="#30363d" rx="5"/>
-  <rect x="250" y="160" width="0.0" height="10" fill="#d29922" rx="5"/>
+  <rect x="250" y="160" width="31.5" height="10" fill="#d29922" rx="5"/>
 
   <text x="250" y="190" fill="#f85149" font-size="18">Hard: 0</text>
   <rect x="250" y="200" width="350" height="10" fill="#30363d" rx="5"/>
